@@ -4,7 +4,7 @@ function start() {
 	document.head.innerHTML += "<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>";
 	document.head.innerHTML += "<script src='https://code.jquery.com/jquery-latest.min.js' type='text/javascript'></script>";
 	document.head.innerHTML += "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>";
-	document.body.innerHTML += "<div class='container-fluid' style='width: 665px; padding-top: 50px;'><div class='panel panel-default'><div class='panel-heading' style='text-align: left;'><span class='btn btn-default btn-xs' id='pcreate' onclick='create()' style='width: 150px;'><b>Create Email</b></span><span class='btn btn-danger btn-xs' onclick='reset()' style='width: 150px; float: right;'><b>Reset</b></span></div><div class='panel-body' id='wadaeemail' style='display: none;'>";
+	document.body.innerHTML += "<div class='container-fluid' style='width: 665px; padding-top: 50px;'><div class='panel panel-default'><div class='panel-heading' style='text-align: left;'><span class='btn btn-default btn-xs' id='pcreate' onclick='create()' style='width: 150px;'><b>Create Email</b></span><span class='btn btn-default btn-xs' onclick='createbookmark()' style='width: 150px;'><b>Create bookmarklet</b></span><span class='btn btn-danger btn-xs' onclick='reset()' style='width: 150px; float: right;'><b>Reset</b></span></div><div class='panel-body' id='wadaeemail' style='display: none;'>";
 }
 
 function reset() {
@@ -34,6 +34,7 @@ function create() {
 	});
 }
 
+
 function checkcode(imel) {
 	var intervalcek = setInterval(function() {
 		var boxmail = "https://m.kuku.lu/recv._ajax.php?";
@@ -48,9 +49,21 @@ function checkcode(imel) {
 				var dd = cc.split(' ')[0];
 				document.getElementById('kode-'+imel).value = imel+'|'+dd;
 				clearInterval(intervalcek);
-				var audio = new Audio('https://tools.pinarax.team/email/bubble.mp3');
-				audio.play();
 			}
 		});
 	}, 2000);
+}
+
+
+function createbookmark() {
+    var data = "";
+    var clas = document.getElementsByClassName('form-control input-sm');
+    for (var i = 0; i < clas.length; i += 1) {
+        mail_code = clas[i].value;
+        mail_code = mail_code.split('|');
+        var c = '"c"';
+        var hasil = "if(mail == '" + mail_code[0] + "'){document.querySelector('input[name=" + c + "]').value='" + mail_code[1] + "';}; ";
+        data += hasil;
+    };
+    prompt("SERET KE BOOKMARK", "javascript: void(((function () {var html = document.getElementById('m_conf_cliff_root_id').innerHTML; var mail = html.substring(html.indexOf('noopener') + 10, html.lastIndexOf('</a></strong>'));" + data + "})()));");
 }
