@@ -47,7 +47,7 @@ function startbulk(){
 		$('#hitungYuk').html(hitungBULK);
 		$("<div class='input-group'><input type='text' class='form-control input-sm' id='kode-"+email+"' value='"+email+"|Waiting...' readonly style='width: 600px;'></div>").prependTo($('#wadaeemail')).slideDown(1000);
 		checkcode(''+email+'');
-		setTimeout( startbulk, 500 );
+		startbulk;
 	});
 
     }else {
