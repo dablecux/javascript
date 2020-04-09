@@ -51,7 +51,7 @@ function startbulk(){
 	});
 
     }else {
-	   create()
+       setTimeout( startbulk, 200 );
        $('#bcreate').removeAttr('disabled');
 	}
 }
