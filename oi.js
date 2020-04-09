@@ -17,13 +17,13 @@ function reset() {
 }
 
 function createbulk() {
+  banyak = document.getElementById("bulkmail").value;
   if (banyak == null || banyak == "") {
   alert("Masukkan Jumlah Email yang dibuat !!!");
   $('#bcreate').removeAttr('disabled');
   }else{
   document.getElementById("wadaeemail").setAttribute("style", "");
   document.getElementById("bcreate").setAttribute("disabled", "");
-  banyak = document.getElementById("bulkmail").value;
   i = 0;
   hitungBULK = document.getElementById("hitungYuk").textContent;
   startbulk();  
